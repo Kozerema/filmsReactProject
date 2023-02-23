@@ -1,20 +1,21 @@
-const baseURL='http://www.themoviedb.org'
+const baseURL='https://api.themoviedb.org/3'
 
-const movies=`https://api.themoviedb.org/3/discover/movie`
+const movies=`discover/movie?movie_id&page`
 
-const images=`https://image.tmdb.org/t/p/w500`
+const genres=` /genres/get-movie-list`
 
 const urls={
     movies:{
         movies,
-        ById:(movie_id)=>`/${movie_id}`
+        byId:(movie_id)=>`${movies}/${movie_id}`
 
     },
-    images:{
-        ById:(poster_path)=>`/${poster_path}`
-        // ById:(movie_id)=>`/${movie_id}/${images}`
+    genres:{
+        genres
+
     }
 }
+
 
 export {
     baseURL,

@@ -1,11 +1,12 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 
-import {moviesService} from "../../services";
+import {genreService, moviesService} from "../../services";
+
 
 const initialState = {
     movies: [],
-    requestId:null,
-    page:null,
+    genres:[],
+    page: null,
     errors: null,
     loading: null
 }
@@ -23,12 +24,11 @@ const getAll = createAsyncThunk(
         }
     })
 
-
-const getDetails=createAsyncThunk(
-    'movieSlice/getDetailsById',
-    async (_,thunkAPI)=>{
+const getAllGenres = createAsyncThunk(
+    'movieSlice/getAllGenres',
+    async (_, thunkAPI) => {
         try {
-            const {data} = await moviesService.getDetailsById()
+            const {data} = await genreService.getGenre();
             return data
 
         } catch (e) {
@@ -36,6 +36,22 @@ const getDetails=createAsyncThunk(
 
         }
     })
+
+
+
+const getDetails = createAsyncThunk(
+    'movieSlice/getDetailsById',
+    async ({id}, thunkAPI) => {
+        try {
+            const {data} = await moviesService.getDetailsById(id)
+            return data
+
+        } catch (e) {
+            return thunkAPI.rejectWithValue(e.response.data)
+
+        }
+    })
+
 
 const movieSlice = createSlice({
     name: 'movieSlice',
@@ -48,16 +64,20 @@ const movieSlice = createSlice({
                 state.movies = results
                 state.page = page
             })
-            // .addCase(getImage.fulfilled,(state,action)=>{
-            //     state.requestId=action.payload
-            // })
+            .addCase(getAllGenres.fulfilled, (state, action) => {
+                state.genres = action.payload
+            })
+
+
 });
 
 const {reducer: movieReducer} = movieSlice
 
 const moviesActions = {
     getAll,
-    getDetails
+    getDetails,
+    getAllGenres
+
 }
 
 export {
