@@ -1,8 +1,9 @@
 import {apiService} from "./apiService";
 import {urls} from "../configs";
 
-const genreService={
-    getGenre:()=>apiService.get(urls.genres.genres)
+const genreService = {
+    getAll: () => apiService.get(urls.genres),
+    getGenreById: (genre_id) => apiService.get(urls.genresById, genre_id)
 }
 
 export {

@@ -1,0 +1,26 @@
+.movie-item {
+    background: var(--secondary-color);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.movie-top :hover {
+    transform: scale(1.1);
+    transition: all 0.3s;
+}
+
+.movie-bottom {
+    padding: 20px;
+}
+
+.movie-info {
+    color: var(--font-primary)
+
+}
+
+.movie-info h4 {
+    font-size: 22px;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+

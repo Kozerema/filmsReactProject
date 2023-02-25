@@ -1,9 +1,9 @@
 import {apiService} from "./apiService";
 import {urls} from "../configs";
 
-const moviesService={
-    getAll:()=>apiService.get(urls.movies.movies),
-    getDetailsById:(id,data)=>apiService.get(urls.movies.byId(id),data)
+const moviesService = {
+    getAll: (page = 1) => apiService.get(urls.movies, {params: {page}}),
+    getDetailsById: (id) => apiService.get(urls.movieById(id))
 
 
 }

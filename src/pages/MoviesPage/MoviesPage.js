@@ -1,12 +1,9 @@
-import {Genre, Movies} from "../../components";
+import { Movies} from "../../components";
 
 const MoviesPage = () => {
     return (
-        <div>
-            <Genre/>
-            <hr/>
+        <div >
             <Movies/>
-
         </div>
     );
 };

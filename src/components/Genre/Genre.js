@@ -1,11 +1,13 @@
-const Genre = ({genre}) => {
+const Genre = ({genreOne}) => {
 
-    // const {short_name}=genre;
+const {id,name}=genreOne
+
+
 
     return (
         <div>
             <div>
-                {/*{short_name}*/}
+                {id}---{name}
             </div>
         </div>
     );

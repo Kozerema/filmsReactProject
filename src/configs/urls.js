@@ -1,19 +1,15 @@
-const baseURL='https://api.themoviedb.org/3'
+const baseURL = 'https://api.themoviedb.org/3'
 
-const movies=`discover/movie?movie_id&page`
+const endUrl = 'api_key=9681de3f558c08e0e7c2174dd664960c&language=en-US'
 
-const genres=` /genres/get-movie-list`
+const urls = {
+    movies: `/discover/movie?${endUrl}`,
+    movieById: (movie_id) => `movie/${movie_id}?${endUrl}`,
 
-const urls={
-    movies:{
-        movies,
-        byId:(movie_id)=>`${movies}/${movie_id}`
+    genres: `/genre/movie/list?${endUrl}`,
+    genresById: (genre_id) => `/discover/movie?with_genres=${endUrl}&sort_by=release_date.desc&with_genres=${genre_id}`,
 
-    },
-    genres:{
-        genres
-
-    }
+    search: (term) => `/search/${endUrl}?term=${term}`
 }
 
 

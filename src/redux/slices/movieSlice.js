@@ -1,11 +1,11 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 
-import {genreService, moviesService} from "../../services";
+import {moviesService, searchService} from "../../services";
 
 
 const initialState = {
     movies: [],
-    genres:[],
+    term: null,
     page: null,
     errors: null,
     loading: null
@@ -13,9 +13,9 @@ const initialState = {
 
 const getAll = createAsyncThunk(
     'movieSlice/getAll',
-    async (_, thunkAPI) => {
+    async ({page}, thunkAPI) => {
         try {
-            const {data} = await moviesService.getAll();
+            const {data} = await moviesService.getAll(page);
             return data
 
         } catch (e) {
@@ -24,11 +24,11 @@ const getAll = createAsyncThunk(
         }
     })
 
-const getAllGenres = createAsyncThunk(
-    'movieSlice/getAllGenres',
-    async (_, thunkAPI) => {
+const getSearch = createAsyncThunk(
+    'movieSlice/getSearch',
+    async ({term}, thunkAPI) => {
         try {
-            const {data} = await genreService.getGenre();
+            const {data} = await searchService.getAll(term);
             return data
 
         } catch (e) {
@@ -36,7 +36,6 @@ const getAllGenres = createAsyncThunk(
 
         }
     })
-
 
 
 const getDetails = createAsyncThunk(
@@ -60,14 +59,25 @@ const movieSlice = createSlice({
     extraReducers: builder =>
         builder
             .addCase(getAll.fulfilled, (state, action) => {
-                const {page, results} = action.payload
+                const {results} = action.payload
                 state.movies = results
-                state.page = page
-            })
-            .addCase(getAllGenres.fulfilled, (state, action) => {
-                state.genres = action.payload
-            })
 
+                state.loading = false
+
+            })
+            .addCase(getAll.rejected, (state, action) => {
+                state.loading = false
+                state.errors = action.payload
+                console.log("Rejected!");
+            })
+            .addCase(getAll.pending, (state, action) => {
+                state.loading = true
+            })
+            .addCase(getSearch.fulfilled, (state, action) => {
+
+                state.term = action.payload
+
+            })
 
 });
 
@@ -76,7 +86,7 @@ const {reducer: movieReducer} = movieSlice
 const moviesActions = {
     getAll,
     getDetails,
-    getAllGenres
+    getSearch
 
 }
 
