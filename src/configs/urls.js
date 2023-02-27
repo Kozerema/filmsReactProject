@@ -7,9 +7,10 @@ const urls = {
     movieById: (movie_id) => `movie/${movie_id}?${endUrl}`,
 
     genres: `/genre/movie/list?${endUrl}`,
-    genresById: (genre_id) => `/discover/movie?with_genres=${endUrl}&sort_by=release_date.desc&with_genres=${genre_id}`,
+    genresById: (genre_id) => `/discover/movie/with_genres=${genre_id}?&sort_by=release_date.desc&with_genres=${endUrl}`,
 
-    search: (term) => `/search/${endUrl}?term=${term}`
+    search: (term) => `/search/movie/${endUrl}?term=${term}`
+
 }
 
 

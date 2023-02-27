@@ -1,0 +1,21 @@
+.genres-container {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 0px 0px;
+    background: var(--font-primary);
+    font-weight: 400;
+
+}
+
+.fa-fa-name {
+    margin: 10px;
+    color: var(--font-secondry);
+    font-size: 20px;
+
+}
+
+.title {
+    margin: 10px;
+    color: var(--font-secondry);
+    font-size: 30px;
+}

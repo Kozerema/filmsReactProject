@@ -1,6 +1,7 @@
-.movies-list{
+.movies-list {
     margin: 20px 0px;
 }
+
 .movies-list h2 {
     color: var(--font-secondry);
     margin-bottom: 10px;
@@ -13,9 +14,9 @@
     grid-auto-rows: 650px;
 }
 
-.button-list{
+.button-list {
     display: inline-block;
-    background-color:  #668cff;
+    background-color: #668cff;
     border: 10px white;
     color: #ffffff;
     text-align: center;

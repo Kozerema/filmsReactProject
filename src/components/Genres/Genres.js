@@ -1,34 +1,32 @@
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {useEffect, useState} from "react";
 
 import {genreService} from "../../services";
 import {Genre} from "../Genre/Genre";
+import './Genres.css';
 
 const Genres = () => {
 
-    // const {genres} = useSelector(state => state.genres)
     const dispatch = useDispatch();
-    const [genre, setGenre] = useState([])
-
+    const [genres, setGenres] = useState([]);
 
     useEffect(() => {
-       genreService.getAll()
-           .then(({data}) => console.log(data))
+        if (genres) {
+            genreService.getAll()
+                .then(({data}) => setGenres({...data}))
 
-
-
-
-
+        }
     }, [dispatch])
 
+    const {genres: genresAll} = genres
 
     return (
-        <div> {genre && genre.map(genreOne=><Genre key={genreOne.id} genreone={genreOne}/>)}
+        <div className={'genres-container'}>
 
-
-            {/*{genre && <>*/}
-            {/*    {genre.id}---{genre.name}*/}
-            {/*</>}*/}
+            <div className={'fa-fa-name'}>
+                <h2 className={'title'}>All Genres</h2>
+                {genresAll && genresAll.map(genre => <Genre key={genre.id} genre={genre}/>)}
+            </div>
         </div>
     );
 };

@@ -2,7 +2,7 @@ import {apiService} from "./apiService";
 import {urls} from "../configs";
 
 const searchService = {
-    getAll: (term) => apiService.get(urls.search, term)
+    getAll: (query='term') => apiService.get(urls.search, {params:{query}})
 }
 
 export {

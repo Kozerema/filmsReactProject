@@ -1,15 +1,18 @@
-const Genre = ({genreOne}) => {
+import {useNavigate} from "react-router-dom";
 
-const {id,name}=genreOne
+const Genre = ({genre}) => {
 
-
+    const {id, name} = genre
+    const navigate = useNavigate();
 
     return (
-        <div>
-            <div>
-                {id}---{name}
-            </div>
+
+        <div className={'genresAll'}>
+            <b className={'fa-fa-name'}
+               onClick={() => navigate(id.toString())}>{name}
+            </b>
         </div>
+
     );
 };
 

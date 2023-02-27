@@ -4,3 +4,4 @@ export * from './Movie/Movie';
 export * from './Header/Header';
 export * from './Genre/Genre';
 export * from './Genres/Genres';
+export * from './GenreDetails/GenreDetails';

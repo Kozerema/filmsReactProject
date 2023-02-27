@@ -1,0 +1,34 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--secondary-color);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, .5);
+}
+
+.content {
+    max-width: 600px;
+    text-align: center;
+}
+
+.content h2 {
+    font-size: 18vw;
+    color: var(--font-secondry);
+    line-height: 1em;
+}
+
+.content h4 {
+    position: relative;
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+    background: var(--font-primary);
+    font-weight: 300;
+    padding: 10px 20px;
+    display: inline-block;
+}
+
+.content p {
+    color: var(--primary-color);
+    font-size: 1.2em;
+}

@@ -6,6 +6,7 @@ import {moviesService, searchService} from "../../services";
 const initialState = {
     movies: [],
     term: null,
+    prev: null,
     page: null,
     errors: null,
     loading: null
@@ -74,7 +75,6 @@ const movieSlice = createSlice({
                 state.loading = true
             })
             .addCase(getSearch.fulfilled, (state, action) => {
-
                 state.term = action.payload
 
             })

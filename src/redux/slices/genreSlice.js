@@ -36,6 +36,19 @@ const getGenreById = createAsyncThunk(
         }
     })
 
+const getGenreDetails = createAsyncThunk(
+    'genreSlice/getGenreById',
+    async ({id}, thunkAPI) => {
+        try {
+            const {data} = await genreService.getGenreById(id)
+            return data
+
+        } catch (e) {
+            return thunkAPI.rejectWithValue(e.response.data)
+
+        }
+    })
+
 
 const genreSlice = createSlice({
     name: 'genreSlice',
@@ -46,7 +59,7 @@ const genreSlice = createSlice({
             .addCase(getAll.fulfilled, (state, action) => {
                 state.loading = false
                 // state.genres = action.payload
-                const [genres] = action.payload
+                const {genres} = action.payload
                 state.movies = genres
 
             })
@@ -54,6 +67,7 @@ const genreSlice = createSlice({
             .addCase(getAll.rejected, (state, action) => {
                 state.loading = false
                 state.errors = action.payload
+                console.log("Rejected!");
             })
             .addCase(getAll.pending, (state, action) => {
                 state.loading = true
@@ -64,14 +78,6 @@ const genreSlice = createSlice({
                 state.loading = false
                 state.genres = action.payload
             })
-    // .addCase(getAll.rejected, (state, action) => {
-    //     state.loading = false
-    //     state.errors = action.payload
-    // })
-    // .addCase(getAll.pending, (state, action) => {
-    //     state.loading = true
-    // })
-
 
 });
 
@@ -80,7 +86,8 @@ const {reducer: genreReducer} = genreSlice
 
 const genreActions = {
     getGenreById,
-    getAll
+    getAll,
+    getGenreDetails
 }
 
 export {

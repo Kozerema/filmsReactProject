@@ -1,4 +1,4 @@
-import {Genres, MovieDetails} from "../../components";
+import { Genres, MovieDetails} from "../../components";
 
 const MovieDetailsPage = () => {
 
@@ -6,7 +6,6 @@ const MovieDetailsPage = () => {
         <div>
             <MovieDetails/>
             <Genres/>
-
         </div>
     );
 };

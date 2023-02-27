@@ -10,13 +10,16 @@ import './Movies.css';
 
 const Movies = () => {
 
-    const {movies} = useSelector(state => state.movies)
+    const {movies, errors} = useSelector(state => state.movies)
     const dispatch = useDispatch();
     const [query, setQuery] = useSearchParams({page: '1'})
 
     useEffect(() => {
-        dispatch(moviesActions.getAll({page: query.get('page')}))
-
+        if (movies) {
+            dispatch(moviesActions.getAll({page: query.get('page')}))
+        } else if (!movies) {
+            return errors.JSON.stringify(errors.data)
+        }
     }, [dispatch, query])
 
 

@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {Link, useParams, useSearchParams} from "react-router-dom";
+import React, {useState} from "react";
+import {useDispatch} from "react-redux";
+import {Link} from "react-router-dom";
 
 import {useTheme} from "../../hooks/useTheme";
 import {moviesActions} from "../../redux";
@@ -27,7 +27,9 @@ const Header = () => {
         if (term === "") return alert("Please enter search term!");
         dispatch(moviesActions.getSearch(term));
         setTerm("");
+
     };
+
 
     return (
         <div className={"header"}>
